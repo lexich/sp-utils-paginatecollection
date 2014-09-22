@@ -5,7 +5,7 @@
   "authors": [
     "lexich121@gmail.com"
   ],
-  "description": "Backbone PaginateCollection",
+  "description": "Backbone Paginate Collection for sp-utils",
   "moduleType": [
     "amd",
     "globals"
@@ -22,5 +22,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "backbone": "~1.1.1",
+    "underscore": "~1.7.0"
+  }
 }
