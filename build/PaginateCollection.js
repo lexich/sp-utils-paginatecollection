@@ -115,11 +115,9 @@
         });
       },
       parse: function(r) {
-        var keys, result;
+        var keys;
         keys = _.chain(this).result("defaults").keys().value();
-        result = _.pick(r, keys);
-        result.sync = true;
-        return result;
+        return _.pick(r, keys);
       }
     });
     PaginateCollection = Backbone.Collection.extend({
@@ -149,7 +147,8 @@
           parse: true
         });
         return this.meta.set({
-          itemscount: this.size()
+          itemscount: this.size(),
+          sync: true
         });
       },
       initMeta: function(options) {
@@ -186,7 +185,7 @@
         }
       }
     });
-    PaginateCollection.version = '0.0.2';
+    PaginateCollection.version = '0.0.3';
     return PaginateCollection;
   };
 

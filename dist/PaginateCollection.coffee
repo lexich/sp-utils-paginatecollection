@@ -84,9 +84,7 @@ HolderPaginateCollection = (Backbone, _)->
 
     parse:(r)->
       keys = _.chain(this).result("defaults").keys().value()
-      result = _.pick r, keys
-      result.sync = true
-      result
+      _.pick r, keys
 
 
   PaginateCollection = Backbone.Collection.extend
@@ -110,7 +108,7 @@ HolderPaginateCollection = (Backbone, _)->
         @remove @models
         @meta.set {_needReset: false}
       @add data, {parse: true}
-      @meta.set {itemscount: @size()}
+      @meta.set {itemscount: @size(), sync: true}
 
     initMeta:(options)->
       @meta.set @meta.parse(options), {silent:true}
@@ -131,7 +129,7 @@ HolderPaginateCollection = (Backbone, _)->
       else
         @setPage page, forse
 
-  PaginateCollection.version = '0.0.2'
+  PaginateCollection.version = '0.0.3'
   PaginateCollection
 
 if (typeof define is 'function') and (typeof define.amd is 'object') and define.amd
