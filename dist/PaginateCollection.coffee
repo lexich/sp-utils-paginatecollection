@@ -16,6 +16,7 @@ HolderPaginateCollection = (Backbone, _)->
       @refreshMode = true
 
     defaults:
+      sync: false
       itemscount: 0
       page:0
       pagesize:10
@@ -83,7 +84,9 @@ HolderPaginateCollection = (Backbone, _)->
 
     parse:(r)->
       keys = _.chain(this).result("defaults").keys().value()
-      _.pick r, keys
+      result = _.pick r, keys
+      result.sync = true
+      result
 
 
   PaginateCollection = Backbone.Collection.extend
@@ -128,7 +131,7 @@ HolderPaginateCollection = (Backbone, _)->
       else
         @setPage page, forse
 
-  PaginateCollection.version = '0.0.1'
+  PaginateCollection.version = '0.0.2'
   PaginateCollection
 
 if (typeof define is 'function') and (typeof define.amd is 'object') and define.amd

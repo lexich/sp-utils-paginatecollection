@@ -16,6 +16,7 @@
         return this.refreshMode = true;
       },
       defaults: {
+        sync: false,
         itemscount: 0,
         page: 0,
         pagesize: 10,
@@ -114,9 +115,11 @@
         });
       },
       parse: function(r) {
-        var keys;
+        var keys, result;
         keys = _.chain(this).result("defaults").keys().value();
-        return _.pick(r, keys);
+        result = _.pick(r, keys);
+        result.sync = true;
+        return result;
       }
     });
     PaginateCollection = Backbone.Collection.extend({
@@ -183,7 +186,7 @@
         }
       }
     });
-    PaginateCollection.version = '0.0.1';
+    PaginateCollection.version = '0.0.2';
     return PaginateCollection;
   };
 
